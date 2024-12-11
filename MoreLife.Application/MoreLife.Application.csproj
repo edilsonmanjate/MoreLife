@@ -8,11 +8,23 @@
 
   <ItemGroup>
     <Folder Include="Common\Mappings\" />
-    <Folder Include="Features\" />
     <Folder Include="DTOs\" />
+    <Folder Include="Features\BloodStock\Command\CreateBloodStockCommand\" />
+    <Folder Include="Features\BloodStock\Command\DeleteBloodStockCommand\" />
+    <Folder Include="Features\BloodStock\Command\UpdateBloodStockCommand\" />
+    <Folder Include="Features\BloodStock\Queries\GetAllBloodStocksQuery\" />
+    <Folder Include="Features\BloodStock\Queries\GetBloodStockByIdQuery\" />
+    <Folder Include="Features\Donation\Command\CreateDonationCommand\" />
+    <Folder Include="Features\Donation\Command\DeleteDonationCommand\" />
+    <Folder Include="Features\Donation\Command\UpdateDonationCommand\" />
+    <Folder Include="Features\Donation\Queries\GetAllDonationsQuery\" />
+    <Folder Include="Features\Donation\Queries\GetDonationByIdQuery\" />
+    <Folder Include="Features\Donator\Queries\GetAllDonatorsQuery\" />
+    <Folder Include="Features\Donator\Queries\GetDonatorByIdQuery\" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
     <PackageReference Include="FluentValidation" Version="11.11.0" />
     <PackageReference Include="MediatR" Version="12.4.1" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.0" />
