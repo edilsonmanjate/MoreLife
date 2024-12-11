@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <Folder Include="Common\Mappings\" />
-    <Folder Include="DTOs\" />
     <Folder Include="Features\BloodStock\Command\CreateBloodStockCommand\" />
     <Folder Include="Features\BloodStock\Command\DeleteBloodStockCommand\" />
     <Folder Include="Features\BloodStock\Command\UpdateBloodStockCommand\" />
@@ -19,8 +18,6 @@
     <Folder Include="Features\Donation\Command\UpdateDonationCommand\" />
     <Folder Include="Features\Donation\Queries\GetAllDonationsQuery\" />
     <Folder Include="Features\Donation\Queries\GetDonationByIdQuery\" />
-    <Folder Include="Features\Donator\Queries\GetAllDonatorsQuery\" />
-    <Folder Include="Features\Donator\Queries\GetDonatorByIdQuery\" />
   </ItemGroup>
 
   <ItemGroup>

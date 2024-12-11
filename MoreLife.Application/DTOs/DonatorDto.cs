@@ -1,12 +1,9 @@
-﻿using MediatR;
-
-using MoreLife.Application.Common.Bases;
-using MoreLife.core.Enums;
+﻿using MoreLife.core.Enums;
 using MoreLife.core.ValueObjects;
 
-namespace MoreLife.Application.Features.Donators.Command.CreateDonatorCommand;
+namespace MoreLife.Application.DTOs;
 
-public class CreateDonatorCommand : IRequest<BaseResponse<bool>>
+public class DonatorDto
 {
     public Guid Id { get; set; }
     public string Name { get;  set; }
