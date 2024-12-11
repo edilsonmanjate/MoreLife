@@ -1,0 +1,6 @@
+@MoreLife.API_HostAddress = http://localhost:5194
+
+GET {{MoreLife.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
