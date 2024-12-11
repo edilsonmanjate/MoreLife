@@ -6,4 +6,17 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Services\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MoreLife.Application\MoreLife.Application.csproj" />
+    <ProjectReference Include="..\MoreLife.core\MoreLife.core.csproj" />
+  </ItemGroup>
+
 </Project>
