@@ -48,39 +48,5 @@ public class Donator : BaseEntity
         Address = address;
     }
 
-
-    //public void AddDonation(Donation donation)
-    //{
-    //    if (CanDonate(donation.Date) && IsEligibleToRegister() && !IsMinor())
-    //    {
-    //        Donations.Add(donation);
-    //    }
-    //    else
-    //    {
-    //        throw new InvalidOperationException(
-    //        "Cannot donate at this time.");
-    //    }
-    //}
-
-    public bool CanDonate(DateTime donationDate)
-    {
-        var lastDonation = Donations.OrderByDescending(d => d.Date).FirstOrDefault();
-        if (lastDonation == null) return true;
-
-        var daysSinceLastDonation = (donationDate - lastDonation.Date).TotalDays;
-        return Genre == Genre.Male ? daysSinceLastDonation >= 60 : daysSinceLastDonation >= 90;
-    }
-
-    public bool IsEligibleToRegister()
-    {
-        return Weight >= 50; 
-    }
-
-    public bool IsMinor()
-    {
-        var today = DateOnly.FromDateTime(DateTime.Now);
-        var age = today.Year - BirthDate.Year;
-        if (BirthDate > today.AddYears(-age)) age--;
-        return age < 18;
-    }
+   
 }

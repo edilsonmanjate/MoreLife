@@ -12,32 +12,46 @@ namespace MoreLife.Application.Features.Donations.Command.CreateDonationCommand;
 public class CreateDonationCommandHandler : IRequestHandler<CreateDonationCommand, BaseResponse<bool>>
 {
     private readonly IDonationRepository _donationRepository;
+    private readonly IDonatorRepository _donatorRepository;
     private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;
 
-    public CreateDonationCommandHandler(IDonationRepository donationRepository, IUnitOfWork unitOfWork, IMapper mapper)
+    public CreateDonationCommandHandler(IDonationRepository donationRepository, IUnitOfWork unitOfWork, IMapper mapper, IDonatorRepository donatorRepository)
     {
         _donationRepository = donationRepository;
         _unitOfWork = unitOfWork;
         _mapper = mapper;
+        _donatorRepository = donatorRepository;
     }
 
     public async Task<BaseResponse<bool>> Handle(CreateDonationCommand command, CancellationToken cancellationToken)
     {
+        
+
         var response = new BaseResponse<bool>();
         try
         {
             var donation = _mapper.Map<Donation>(command);
 
-            response.Data = await _donationRepository.Create(donation);
-            await _unitOfWork.Save(cancellationToken);
+            var lastDonation = await _donationRepository.GetByDonatorId(command.DonatorId, cancellationToken);
 
-            if (response.Data)
+            var lastDonationDate = lastDonation is not null ? lastDonation.OrderByDescending(d => d.Date).FirstOrDefault() : null;
+
+            var donator = await _donatorRepository.Get(command.DonatorId, cancellationToken);
+
+
+            if (lastDonationDate is null || donation.CanDonate(lastDonationDate.Date, donator))
             {
-                response.Success = true;
-                response.Message = "Donation created successfully";
+                response.Data = await _donationRepository.Create(donation);
+                await _unitOfWork.Save(cancellationToken);
+
+                if (response.Data)
+                {
+                    response.Success = true;
+                    response.Message = "Donation created successfully";
+                }
             }
-                
+
         }
         catch (BadRequestException ex)
         {

@@ -3,5 +3,5 @@
 public enum Genre
 {
     Male,
-    Famale
+    Female
 }

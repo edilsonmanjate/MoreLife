@@ -34,7 +34,6 @@ public class CreateDonatorCommandHandler : IRequestHandler<CreateDonatorCommand,
         if (!isEmailUnique)
             throw new BadRequestException("Email is already in use.");
 
-        
         var response = new BaseResponse<bool>();
 
         try

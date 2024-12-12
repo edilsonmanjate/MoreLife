@@ -1,10 +1,11 @@
 ﻿using MoreLife.core.Enums;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace MoreLife.core.Entities;
 
 public class Donation : BaseEntity
 {
-    public Donation(Guid donatorId, DateTime date, int quantity)
+    public Donation(Guid donatorId, DateOnly date, int quantity)
     {
         DonatorId = donatorId;
         Date = date;
@@ -13,18 +14,31 @@ public class Donation : BaseEntity
 
     public Guid DonatorId { get; private set; }
     public Donator Donator { get; private set; }
-    public DateTime Date { get; private set; }
+    public DateOnly Date { get; private set; }
     public int Quantity { get; private set; }
 
-    public void UpdateDonation(DateTime date, int quantity, Guid donatorId)
+    public void UpdateDonation(DateOnly date, int quantity, Guid donatorId)
     {
         DonatorId = donatorId;
         Date = date;
         Quantity = quantity;
     }
 
-    public bool IsValidQuantity()
+    public bool CanDonate(DateOnly lastDonationDate, Donator donator)
     {
-        return Quantity < 420 || Quantity > 470 ?  false : true;
+
+        if (donator.Weight < 50)
+            throw new Exception("Insufficient weight to donate.");
+
+        var daysSinceLastDonation = (Date.ToDateTime(TimeOnly.MinValue) - lastDonationDate.ToDateTime(TimeOnly.MinValue)).Days;
+
+        if (donator.Genre == Genre.Female && daysSinceLastDonation < 90)
+            throw new Exception("Women can only donate every 90 days.");
+
+        if (donator.Genre == Genre.Male && daysSinceLastDonation < 60)
+            throw new Exception("Men can only donate every 60 days.");
+
+        return true;
     }
+
 }

@@ -1,31 +1,32 @@
 ﻿using AutoMapper;
 
 using MediatR;
+
 using MoreLife.Application.Common.Bases;
 using MoreLife.Application.Common.Exceptions;
 using MoreLife.Application.DTOs;
 using MoreLife.Application.Repositories;
 
-namespace MoreLife.Application.Features.Donations.Queries.GetDonationByIdQuery;
+namespace MoreLife.Application.Features.Donations.Queries.GetAllDonationsByDonatorIdQuery;
 
-public class GetDonationByIdQueryHandler : IRequestHandler<GetDonationByIdQuery, BaseResponse<DonationDto>>
+public class GetAllDonationsByDonatorIdQueryHandler : IRequestHandler<GetAllDonationsByDonatorIdQuery, BaseResponse<DonationDto>>
 {
     private readonly IDonationRepository _donationRepository;
     private readonly IMapper _mapper;
 
-    public GetDonationByIdQueryHandler(IDonationRepository donationRepository, IMapper mapper)
+    public GetAllDonationsByDonatorIdQueryHandler(IDonationRepository donationRepository, IMapper mapper)
     {
         _donationRepository = donationRepository;
         _mapper = mapper;
     }
 
-    public async  Task<BaseResponse<DonationDto>> Handle(GetDonationByIdQuery request, CancellationToken cancellationToken)
+    public async Task<BaseResponse<DonationDto>> Handle(GetAllDonationsByDonatorIdQuery request, CancellationToken cancellationToken)
     {
         var response = new BaseResponse<DonationDto>();
 
         try
         {
-            var donation = await _donationRepository.Get(request.Id, cancellationToken);
+            var donation = await _donationRepository.Get(request.DonatorId, cancellationToken);
 
             if (donation is not null)
             {

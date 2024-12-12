@@ -4,6 +4,6 @@ public class DonationDto
 {
     public Guid Id { get;  set; }
     public Guid DonatorId { get;  set; }
-    public DateTime Date { get;  set; }
+    public DateOnly Date { get;  set; }
     public int Quantity { get;  set; }
 }
