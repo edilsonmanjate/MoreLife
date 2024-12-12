@@ -9,5 +9,6 @@ namespace MoreLife.Infrastructure.Repositories
         public DonationRepository(MoreLifeDbContext context) : base(context)
         {
         }
+
     }
 }

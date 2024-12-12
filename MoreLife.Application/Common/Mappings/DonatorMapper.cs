@@ -12,8 +12,9 @@ public class DonatorMapper : Profile
 {
     public DonatorMapper()
     {
-        CreateMap<Donator, DonatorDto>();
+        CreateMap<Donator, DonatorDto>().ReverseMap();
         CreateMap<Donator, CreateDonatorCommand>().ReverseMap();
+        CreateMap<DonatorDto, CreateDonatorCommand>().ReverseMap();
         CreateMap<Donator, UpdateDonatorCommand>().ReverseMap();
         CreateMap<Donator, DeleteDonatorCommand>().ReverseMap();
 

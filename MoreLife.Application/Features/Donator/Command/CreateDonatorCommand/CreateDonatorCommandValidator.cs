@@ -28,7 +28,7 @@ public class CreateDonatorCommandValidator : AbstractValidator<CreateDonatorComm
             .IsInEnum().WithMessage("Invalid genre.");
 
         RuleFor(d => d.Weight)
-            .GreaterThan(0).WithMessage("Weight must be greater than 0.");
+            .GreaterThan(49).WithMessage($"Weight must be greater than 49.");
 
         RuleFor(d => d.Height)
             .GreaterThan(0).WithMessage("Height must be greater than 0.");
@@ -50,30 +50,7 @@ public class CreateDonatorCommandValidator : AbstractValidator<CreateDonatorComm
         if (birthDate > today.AddYears(-age)) age--;
         return age >= 18;
     }
+
 }
 
-public class AddressValidator : AbstractValidator<Address>
-{
-    public AddressValidator()
-    {
-        RuleFor(a => a.Id)
-            .NotEmpty().WithMessage("Address Id is required.");
 
-        RuleFor(a => a.Street)
-            .NotEmpty().WithMessage("Street is required.")
-            .MaximumLength(200).WithMessage("Street must not exceed 200 characters.");
-
-        RuleFor(a => a.City)
-            .NotEmpty().WithMessage("City is required.")
-            .MaximumLength(100).WithMessage("City must not exceed 100 characters.");
-
-        RuleFor(a => a.State)
-            .NotEmpty().WithMessage("State is required.")
-            .MaximumLength(100).WithMessage("State must not exceed 100 characters.");
-
-        RuleFor(a => a.PostalCode)
-            .NotEmpty().WithMessage("PostalCode is required.");
-            
-
-    }
-}

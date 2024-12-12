@@ -1,4 +1,6 @@
-﻿namespace MoreLife.core.Entities;
+﻿using MoreLife.core.Enums;
+
+namespace MoreLife.core.Entities;
 
 public class Donation : BaseEntity
 {
@@ -19,5 +21,10 @@ public class Donation : BaseEntity
         DonatorId = donatorId;
         Date = date;
         Quantity = quantity;
+    }
+
+    public bool IsValidQuantity()
+    {
+        return Quantity < 420 || Quantity > 470 ?  false : true;
     }
 }

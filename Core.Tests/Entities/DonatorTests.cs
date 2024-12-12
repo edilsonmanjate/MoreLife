@@ -32,7 +32,7 @@ public class DonatorTests
         Assert.Equal(weight, donator.Weight);
         Assert.Equal(height, donator.Height);
         Assert.Equal(bloodType, donator.BloodType);
-        Assert.Equal(rhFactor, donator.RhFactor);
+        Assert.Equal(rhFactor, donator.BloodRhFactor);
         Assert.Equal(address, donator.Address);
         Assert.Empty(donator.Donations);
     }
@@ -63,7 +63,7 @@ public class DonatorTests
         Assert.Equal(newWeight, donator.Weight);
         Assert.Equal(newHeight, donator.Height);
         Assert.Equal(newBloodType, donator.BloodType);
-        Assert.Equal(newRhFactor, donator.RhFactor);
+        Assert.Equal(newRhFactor, donator.BloodRhFactor);
         Assert.Equal(newAddress, donator.Address);
     }
 

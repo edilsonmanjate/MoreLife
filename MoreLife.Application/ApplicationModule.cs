@@ -3,12 +3,14 @@ using FluentValidation.AspNetCore;
 
 using MediatR;
 
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 using MoreLife.Application.Common.Behavior;
 using MoreLife.Application.Features.Donators.Command.CreateDonatorCommand;
 using MoreLife.Application.Features.Donators.Command.DeleteDonatorCommand;
 using MoreLife.Application.Features.Donators.Command.UpdateDonatorCommand;
+using MoreLife.Application.Services;
 
 using System.Reflection;
 
@@ -19,7 +21,6 @@ public static class ApplicationModule
     public static IServiceCollection AddApplication(this IServiceCollection services)
     {
         services
-            //.AddAutoMapper(typeof(ApplicationModule))
             .AddAutoMapper(Assembly.GetExecutingAssembly())
             .AddMediator()
             .AddValidation()
@@ -27,6 +28,9 @@ public static class ApplicationModule
 
         return services;
     }
+
+
+
     private static IServiceCollection AddServices(this IServiceCollection services)
     {
         services

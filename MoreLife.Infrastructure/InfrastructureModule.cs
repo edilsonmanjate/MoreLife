@@ -2,8 +2,10 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MoreLife.Application.Repositories;
+using MoreLife.Application.Services;
 using MoreLife.Infrastructure.Persistence;
 using MoreLife.Infrastructure.Repositories;
+using MoreLife.Infrastructure.Services;
 
 namespace MoreLife.Infrastructure;
 
@@ -15,8 +17,8 @@ public static class InfrastructureModule
 
         services
             .AddDb(connectionString)
-            .AddRepositories();
-
+            .AddRepositories()
+            .AddServices();
         return services;
     }
 
@@ -25,6 +27,13 @@ public static class InfrastructureModule
         //services.AddDbContext<MoreLifeDbContext>(options => options.UseSqlite(connectionString));
         services.AddDbContext<MoreLifeDbContext>(options => options.UseInMemoryDatabase("Library"));
 
+        return services;
+    }
+
+    public static IServiceCollection AddServices(this IServiceCollection services)
+    {
+        // Register other services
+        services.AddTransient<IPostalCodeService, PostalCodeService>();
         return services;
     }
 
