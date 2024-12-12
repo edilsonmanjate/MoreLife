@@ -12,11 +12,6 @@
     <Folder Include="Features\BloodStock\Command\UpdateBloodStockCommand\" />
     <Folder Include="Features\BloodStock\Queries\GetAllBloodStocksQuery\" />
     <Folder Include="Features\BloodStock\Queries\GetBloodStockByIdQuery\" />
-    <Folder Include="Features\Donation\Command\CreateDonationCommand\" />
-    <Folder Include="Features\Donation\Command\DeleteDonationCommand\" />
-    <Folder Include="Features\Donation\Command\UpdateDonationCommand\" />
-    <Folder Include="Features\Donation\Queries\GetAllDonationsQuery\" />
-    <Folder Include="Features\Donation\Queries\GetDonationByIdQuery\" />
   </ItemGroup>
 
   <ItemGroup>

@@ -3,14 +3,13 @@ using FluentValidation.AspNetCore;
 
 using MediatR;
 
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 using MoreLife.Application.Common.Behavior;
+using MoreLife.Application.Features.Donations.Command.CreateDonationCommand;
 using MoreLife.Application.Features.Donators.Command.CreateDonatorCommand;
 using MoreLife.Application.Features.Donators.Command.DeleteDonatorCommand;
 using MoreLife.Application.Features.Donators.Command.UpdateDonatorCommand;
-using MoreLife.Application.Services;
 
 using System.Reflection;
 
@@ -57,7 +56,12 @@ public static class ApplicationModule
             .AddValidatorsFromAssemblyContaining<UpdateDonatorCommand>()
             .AddValidatorsFromAssemblyContaining<DeleteDonatorCommand>()
 
-            
+
+            .AddValidatorsFromAssemblyContaining<CreateDonationCommand>()
+            .AddValidatorsFromAssemblyContaining<CreateDonationCommand>()
+            .AddValidatorsFromAssemblyContaining<CreateDonationCommand>()
+
+
             ;
 
         return services;
