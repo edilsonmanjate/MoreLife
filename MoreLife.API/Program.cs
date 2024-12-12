@@ -1,5 +1,11 @@
+using MediatR;
+
 using MoreLife.Application;
+using MoreLife.Application.Features.Donations.Command.CreateDonationCommand;
+using MoreLife.Application.Features.Donations.EventHandlers;
+using MoreLife.core.Events;
 using MoreLife.Infrastructure;
+using MoreLife.Infrastructure.Services;
 
 using System.Text.Json.Serialization;
 
@@ -16,6 +22,7 @@ builder.Services.AddControllers()
 builder.Services
     .AddApplication()
     .AddInfrastructure(builder.Configuration);
+
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

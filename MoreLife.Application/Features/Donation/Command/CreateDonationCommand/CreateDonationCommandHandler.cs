@@ -6,6 +6,7 @@ using MoreLife.Application.Common.Bases;
 using MoreLife.Application.Common.Exceptions;
 using MoreLife.Application.Repositories;
 using MoreLife.core.Entities;
+using MoreLife.core.Events;
 
 namespace MoreLife.Application.Features.Donations.Command.CreateDonationCommand;
 
@@ -15,13 +16,14 @@ public class CreateDonationCommandHandler : IRequestHandler<CreateDonationComman
     private readonly IDonatorRepository _donatorRepository;
     private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;
-
-    public CreateDonationCommandHandler(IDonationRepository donationRepository, IUnitOfWork unitOfWork, IMapper mapper, IDonatorRepository donatorRepository)
+    private readonly IMediator _mediator;
+    public CreateDonationCommandHandler(IDonationRepository donationRepository, IUnitOfWork unitOfWork, IMapper mapper, IDonatorRepository donatorRepository, IMediator mediator)
     {
         _donationRepository = donationRepository;
         _unitOfWork = unitOfWork;
         _mapper = mapper;
         _donatorRepository = donatorRepository;
+        _mediator = mediator;
     }
 
     public async Task<BaseResponse<bool>> Handle(CreateDonationCommand command, CancellationToken cancellationToken)
@@ -49,6 +51,9 @@ public class CreateDonationCommandHandler : IRequestHandler<CreateDonationComman
                 {
                     response.Success = true;
                     response.Message = "Donation created successfully";
+
+                    // Disparar evento de domínio
+                    await _mediator.Publish(new DonationCreatedEvent(donation), cancellationToken);
                 }
             }
 

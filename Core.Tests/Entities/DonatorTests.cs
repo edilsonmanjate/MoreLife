@@ -13,11 +13,11 @@ public class DonatorTests
         var name = "John Doe";
         var email = "john.doe@example.com";
         var birthDate = new DateOnly(1990, 1, 1);
-        var genre = Genre.M;
+        var genre = Genre.Male;
         var weight = 70.5m;
         var height = 175.3m;
         var bloodType = BloodType.O;
-        var rhFactor = "+";
+        var rhFactor = BloodRhFactor.Positive;
         var address = new Address(Guid.NewGuid(), "Av 24 de Julho", "Maputo", "Cidade de Maputo", "12345");
         var donations = new List<Donation>();
 
@@ -63,7 +63,7 @@ public class DonatorTests
         Assert.Equal(newWeight, donator.Weight);
         Assert.Equal(newHeight, donator.Height);
         Assert.Equal(newBloodType, donator.BloodType);
-        Assert.Equal(newRhFactor, donator.BloodRhFactor);
+        Assert.Equal(newRhFactor, BloodRhFactor.Positive);
         Assert.Equal(newAddress, donator.Address);
     }
 

@@ -10,8 +10,6 @@
     <Folder Include="Features\BloodStock\Command\CreateBloodStockCommand\" />
     <Folder Include="Features\BloodStock\Command\DeleteBloodStockCommand\" />
     <Folder Include="Features\BloodStock\Command\UpdateBloodStockCommand\" />
-    <Folder Include="Features\BloodStock\Queries\GetAllBloodStocksQuery\" />
-    <Folder Include="Features\BloodStock\Queries\GetBloodStockByIdQuery\" />
   </ItemGroup>
 
   <ItemGroup>

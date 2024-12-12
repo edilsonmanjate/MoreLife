@@ -1,8 +1,14 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using MediatR;
+
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using MoreLife.Application.Features.Donations.Command.CreateDonationCommand;
+
+using MoreLife.Application.Features.Donations.EventHandlers;
 using MoreLife.Application.Repositories;
 using MoreLife.Application.Services;
+using MoreLife.core.Events;
 using MoreLife.Infrastructure.Persistence;
 using MoreLife.Infrastructure.Repositories;
 using MoreLife.Infrastructure.Services;
@@ -34,6 +40,10 @@ public static class InfrastructureModule
     {
         // Register other services
         services.AddTransient<IPostalCodeService, PostalCodeService>();
+        services.AddHostedService<DomainEventHostedService>();
+        services.AddScoped<INotificationHandler<DonationCreatedEvent>, DonationCreatedEventHandler>();
+        
+
         return services;
     }
 
