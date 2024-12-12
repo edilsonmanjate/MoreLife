@@ -1,15 +1,10 @@
 ﻿using AutoMapper;
 
 using MediatR;
+
 using MoreLife.Application.Common.Bases;
 using MoreLife.Application.DTOs;
 using MoreLife.Application.Repositories;
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MoreLife.Application.Features.BloodStocks.Queries.GetAllBloodStocksQuery;
 
