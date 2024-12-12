@@ -26,6 +26,8 @@ public class DeleteDonatorCommandHandler : IRequestHandler<DeleteDonatorCommand,
     {
         var response = new BaseResponse<bool>();
 
+
+
         try
         {
             var donator = _mapper.Map<Donator>(command);
