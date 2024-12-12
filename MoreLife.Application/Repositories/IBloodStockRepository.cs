@@ -2,6 +2,6 @@
 
 namespace MoreLife.Application.Repositories;
 
-public interface IBloodStock : IBaseRepository<BloodStock>
+public interface IBloodStockRepository : IBaseRepository<BloodStock>
 {
 }

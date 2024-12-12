@@ -5,7 +5,7 @@ namespace MoreLife.core.Entities;
 
 public class Donator : BaseEntity
 {
-    public Donator(string name, string email, DateOnly birthDate, Genre genre, decimal weight, decimal height, BloodType bloodType, string hrFactor, Address address, List<Donation> donations)
+    public Donator(string name, string email, DateOnly birthDate, Genre genre, decimal weight, decimal height, BloodType bloodType, string rhFactor, Address address, List<Donation> donations)
     {
         Name = name;
         Email = email;
@@ -14,9 +14,13 @@ public class Donator : BaseEntity
         Weight = weight;
         Height = height;
         BloodType = bloodType;
-        HRFactor = hrFactor;
+        RhFactor = rhFactor;
         Address = address;
-        Donations = donations ?? new List<Donation>();
+        Donations = new List<Donation>();
+    }
+    private Donator()
+    {
+        Donations = new List<Donation>();
     }
 
     public string Name { get; private set; }
@@ -26,7 +30,7 @@ public class Donator : BaseEntity
     public decimal Weight { get; private set; }
     public decimal Height { get; private set; }
     public BloodType BloodType { get; private set; }
-    public string HRFactor { get; private set; }
+    public string RhFactor { get; private set; }
     public Address Address { get; private set; }
     public List<Donation> Donations { get; private set; }
 
@@ -39,7 +43,7 @@ public class Donator : BaseEntity
         Weight = weight;
         Height = height;
         BloodType = bloodType;
-        HRFactor = hrFactor;
+        RhFactor = hrFactor;
         Address = address;
     }
 

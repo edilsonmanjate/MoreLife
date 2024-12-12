@@ -28,8 +28,8 @@ public class DeleteDonatorCommandHandler : IRequestHandler<DeleteDonatorCommand,
 
         try
         {
-            var book = _mapper.Map<Donator>(command);
-            response.Data = await _donatorRepository.Delete(book);
+            var donator = _mapper.Map<Donator>(command);
+            response.Data = await _donatorRepository.Delete(donator);
             await _unitOfWork.Save(cancellationToken);
 
             if (response.Data)

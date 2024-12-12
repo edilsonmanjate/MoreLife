@@ -15,6 +15,6 @@ public class UpdateDonatorCommand : IRequest<BaseResponse<bool>>
     public decimal Weight { get;  set; }
     public decimal Height { get;  set; }
     public BloodType BloodType { get;  set; }
-    public string HRFactor { get;  set; }
+    public string RhFactor { get;  set; }
     public Address Address { get; set; }
 }

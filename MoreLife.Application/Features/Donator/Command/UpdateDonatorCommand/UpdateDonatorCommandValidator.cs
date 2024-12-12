@@ -36,7 +36,7 @@ public class UpdateDonatorCommandValidator : AbstractValidator<UpdateDonatorComm
         RuleFor(d => d.BloodType)
             .IsInEnum().WithMessage("Invalid blood type.");
 
-        RuleFor(d => d.HRFactor)
+        RuleFor(d => d.RhFactor)
             .NotEmpty().WithMessage("HRFactor is required.");
 
         RuleFor(d => d.Address)
@@ -73,7 +73,6 @@ public class AddressValidator : AbstractValidator<Address>
             .MaximumLength(100).WithMessage("State must not exceed 100 characters.");
 
         RuleFor(a => a.PostalCode)
-            .NotEmpty().WithMessage("PostalCode is required.")
-            .Matches(@"^\d{5}(-\d{4})?$").WithMessage("Invalid PostalCode format.");
+            .NotEmpty().WithMessage("PostalCode is required.");
     }
 }

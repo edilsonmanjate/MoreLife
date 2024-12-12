@@ -4,17 +4,17 @@ namespace MoreLife.core.Entities;
 
 public class BloodStock : BaseEntity
 {
-    public BloodStock(Guid bloodTypeId, BloodType bloodType, int quantity, string hrFactor)
+    public BloodStock(Guid bloodTypeId, BloodType bloodType, int quantity, string rhFactor)
     {
         BloodTypeId = bloodTypeId;
         BloodType = bloodType;
         Quantity = quantity;
-        RHFactor = hrFactor;
+        RhFactor = rhFactor;
     }
     public Guid BloodTypeId { get; private set; }
     public BloodType BloodType { get; private set; }
     public int Quantity { get; private set; }
-    public string RHFactor { get; private set; }
+    public string RhFactor { get; private set; }
 
     public void UpdateQuantity(int newQuantity)
     {

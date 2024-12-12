@@ -13,10 +13,11 @@ public class UpdateDonatorCommandHandler : IRequestHandler<UpdateDonatorCommand,
     private readonly IDonatorRepository _donatorRepository;
     private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;
-    public UpdateDonatorCommandHandler(IDonatorRepository donatorRepository, IMapper mapper)
+    public UpdateDonatorCommandHandler(IDonatorRepository donatorRepository, IMapper mapper, IUnitOfWork unitOfWork)
     {
         _donatorRepository = donatorRepository;
         _mapper = mapper;
+        _unitOfWork = unitOfWork;
     }
     public async Task<BaseResponse<bool>> Handle(UpdateDonatorCommand command, CancellationToken cancellationToken)
     {
