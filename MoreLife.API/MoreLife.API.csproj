@@ -18,4 +18,8 @@
     <ProjectReference Include="..\MoreLife.Infrastructure\MoreLife.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="db\" />
+  </ItemGroup>
+
 </Project>
