@@ -3,7 +3,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using MoreLife.Application.Features.Donations.Command.CreateDonationCommand;
 
 using MoreLife.Application.Features.Donations.EventHandlers;
 using MoreLife.Application.Repositories;
@@ -42,7 +41,9 @@ public static class InfrastructureModule
         services.AddTransient<IPostalCodeService, PostalCodeService>();
         services.AddHostedService<DomainEventHostedService>();
         services.AddScoped<INotificationHandler<DonationCreatedEvent>, DonationCreatedEventHandler>();
-        
+
+        services.AddScoped<ITokenService, TokenService>();
+
 
         return services;
     }
@@ -54,6 +55,8 @@ public static class InfrastructureModule
         services.AddScoped<IDonatorRepository, DonatorRepository>();
         services.AddScoped<IDonationRepository, DonationRepository>();
         services.AddScoped<IBloodStockRepository, BloodStockRepository>();
+        services.AddScoped<IUserRepository, UserRepository>();
+
 
         return services;
     }

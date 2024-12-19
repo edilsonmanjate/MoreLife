@@ -24,11 +24,11 @@ public class GetDonatorByIdQueryHandler : IRequestHandler<GetDonatorByIdQuery, B
 
         try
         {
-            var book = await _donatorRepository.Get(request.Id, cancellationToken);
+            var donator = await _donatorRepository.Get(request.Id, cancellationToken);
 
-            if (book is not null)
+            if (donator is not null)
             {
-                response.Data = _mapper.Map<DonatorDto>(book);
+                response.Data = _mapper.Map<DonatorDto>(donator);
                 response.Success = true;
                 response.Message = "Query succeed!";
             }

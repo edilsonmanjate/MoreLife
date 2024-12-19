@@ -52,11 +52,9 @@ public class CreateDonationCommandHandler : IRequestHandler<CreateDonationComman
                     response.Success = true;
                     response.Message = "Donation created successfully";
 
-                    // Disparar evento de domínio
                     await _mediator.Publish(new DonationCreatedEvent(donation), cancellationToken);
                 }
             }
-
         }
         catch (BadRequestException ex)
         {

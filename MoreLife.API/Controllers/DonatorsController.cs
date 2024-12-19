@@ -1,5 +1,6 @@
 ﻿using MediatR;
 
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 using MoreLife.Application.Features.Donators.Command.CreateDonatorCommand;
@@ -12,6 +13,7 @@ namespace MoreLife.API.Controllers;
 
 [ApiController]
 [Route("api/donators")]
+[Authorize]
 public class DonatorsController : ControllerBase
 {
     private readonly IMediator _mediator;

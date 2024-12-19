@@ -1,44 +1,46 @@
 ﻿using MediatR;
 
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 using MoreLife.Application.Features.BloodStocks.Queries.GetAllBloodStocksQuery;
 using MoreLife.Application.Features.BloodStocks.Queries.GetBloodStockByBloodTypeQuerys;
 
-namespace MoreLife.API.Controllers
+namespace MoreLife.API.Controllers;
+
+[ApiController]
+[Route("api/BloodStock")]
+[Authorize]
+
+public class BloodStockController : ControllerBase
 {
-    [ApiController]
-    [Route("api/BloodStock")]
-    public class BloodStockController : ControllerBase
+    private readonly IMediator _mediator;
+
+    public BloodStockController(IMediator mediator)
     {
-        private readonly IMediator _mediator;
+        _mediator = mediator;
+    }
 
-        public BloodStockController(IMediator mediator)
+    [HttpGet("GetByBloodType")]
+    public async Task<IActionResult> GetAsync([FromQuery] string bloodType, string rhFactor)
+    {
+        var response = await _mediator.Send(new GetBloodStockByBloodTypeQuery() { bloodType = bloodType, rhFactor = rhFactor });
+        if (response.Success)
         {
-            _mediator = mediator;
+            return Ok(response);
         }
 
-        [HttpGet("GetByBloodType")]
-        public async Task<IActionResult> GetAsync([FromQuery] string bloodType, string rhFactor)
-        {
-            var response = await _mediator.Send(new GetBloodStockByBloodTypeQuery() { bloodType = bloodType, rhFactor = rhFactor });
-            if (response.Success)
-            {
-                return Ok(response);
-            }
+        return BadRequest(response);
+    }
 
-            return BadRequest(response);
-        }
-
-        [HttpGet("GetAll")]
-        public async Task<IActionResult> GetAllAsync()
+    [HttpGet("GetAll")]
+    public async Task<IActionResult> GetAllAsync()
+    {
+        var response = await _mediator.Send(new GetAllBloodStocksQuery());
+        if (response.Success)
         {
-            var response = await _mediator.Send(new GetAllBloodStocksQuery());
-            if (response.Success)
-            {
-                return Ok(response);
-            }
-            return BadRequest(response);
+            return Ok(response);
         }
+        return BadRequest(response);
     }
 }

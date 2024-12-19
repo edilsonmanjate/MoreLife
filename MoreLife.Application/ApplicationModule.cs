@@ -36,6 +36,8 @@ public static class ApplicationModule
             .AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>))
             .AddSingleton(typeof(IPipelineBehavior<,>), typeof(LoggingBehaviour<,>))
             .AddSingleton(typeof(IPipelineBehavior<,>), typeof(PerformanceBehaviour<,>));
+           
+            
 
         return services;
     }
