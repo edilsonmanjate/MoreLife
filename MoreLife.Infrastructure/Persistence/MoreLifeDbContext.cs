@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
 using MoreLife.core.Entities;
+using MoreLife.core.Settings;
 using MoreLife.Infrastructure.Persistence.Configuration;
 using MoreLife.Infrastructure.Persistence.Configurations;
 
@@ -16,6 +17,7 @@ public class MoreLifeDbContext : DbContext
     public DbSet<Donation> Donations { get; set; }
     public DbSet<BloodStock> BloodStocks { get; set; }
     public DbSet<User> Users { get; set; }
+    public DbSet<JwtSettings> JwtSettings { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -23,6 +25,8 @@ public class MoreLifeDbContext : DbContext
 
         modelBuilder.ApplyConfiguration(new DonatorConfiguration());
         modelBuilder.ApplyConfiguration(new DonationConfiguration());
+        modelBuilder.ApplyConfiguration(new UserConfiguration());
+        modelBuilder.ApplyConfiguration(new JwtSettingsConfiguration());
     }
 
 }

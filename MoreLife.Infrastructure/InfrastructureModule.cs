@@ -29,8 +29,10 @@ public static class InfrastructureModule
 
     private static IServiceCollection AddDb(this IServiceCollection services, string? connectionString)
     {
-        //services.AddDbContext<MoreLifeDbContext>(options => options.UseSqlite(connectionString));
-        services.AddDbContext<MoreLifeDbContext>(options => options.UseInMemoryDatabase("Library"));
+        services.AddDbContext<MoreLifeDbContext>(
+                                options => options.UseSqlite(connectionString,
+                            sqlOptions => sqlOptions.MigrationsAssembly("MoreLife.Infrastructure")));
+        //services.AddDbContext<MoreLifeDbContext>(options => options.UseInMemoryDatabase("Library"));
 
         return services;
     }
