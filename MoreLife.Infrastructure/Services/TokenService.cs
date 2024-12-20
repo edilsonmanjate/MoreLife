@@ -1,4 +1,5 @@
-﻿using Microsoft.IdentityModel.Tokens;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
 
 using MoreLife.Application.Services;
 using MoreLife.core.Entities;
@@ -13,10 +14,12 @@ namespace MoreLife.Infrastructure.Services;
 public class TokenService : ITokenService
 {
     private readonly JwtSettings _jwtSettings;
+    private readonly IConfiguration _configuration;
 
-    public TokenService(JwtSettings jwtSettings)
+    public TokenService(JwtSettings jwtSettings, IConfiguration configuration)
     {
         _jwtSettings = jwtSettings;
+        _configuration = configuration;
     }
 
     public string GenerateToken(User user)
@@ -28,12 +31,12 @@ public class TokenService : ITokenService
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
             };
 
-        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.Secret));
+        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
         var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
         var token = new JwtSecurityToken(
-            _jwtSettings.Issuer,
-            _jwtSettings.Audience,
+            _configuration["Jwt:Issuer"],
+            _configuration["Jwt:Audience"],
             claims,
             expires: DateTime.Now.AddMinutes(_jwtSettings.ExpirationInMinutes),
             signingCredentials: creds);

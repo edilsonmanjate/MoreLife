@@ -10,8 +10,7 @@ namespace MoreLife.API.Controllers;
 
 [ApiController]
 [Route("api/BloodStock")]
-[Authorize]
-
+//[Authorize]
 public class BloodStockController : ControllerBase
 {
     private readonly IMediator _mediator;

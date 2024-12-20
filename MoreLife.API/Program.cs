@@ -1,17 +1,10 @@
-using MediatR;
-
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 
 using MoreLife.Application;
-using MoreLife.Application.Features.Donations.Command.CreateDonationCommand;
-using MoreLife.Application.Features.Donations.EventHandlers;
-using MoreLife.core.Events;
 using MoreLife.core.Settings;
 using MoreLife.Infrastructure;
-using MoreLife.Infrastructure.Services;
 
 using System.Text;
 using System.Text.Json.Serialization;
@@ -39,10 +32,21 @@ builder.Services.AddAuthentication(options =>
         ValidateAudience = true,
         ValidateLifetime = true,
         ValidateIssuerSigningKey = true,
-        ValidIssuer = jwtSettings.Issuer,
-        ValidAudience = jwtSettings.Audience,
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.Secret))
+        ValidIssuer = builder.Configuration["Jwt:Issuer"], //jwtSettings.Issuer,
+        ValidAudience = builder.Configuration["Jwt:Issuer"],
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
     };
+});
+
+// Add CORS services
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", builder =>
+    {
+        builder.AllowAnyOrigin()
+               .AllowAnyMethod()
+               .AllowAnyHeader();
+    });
 });
 
 
@@ -108,6 +112,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+// Use CORS policy
+app.UseCors("AllowAll");
 
 app.UseAuthentication();
 app.UseAuthorization();
