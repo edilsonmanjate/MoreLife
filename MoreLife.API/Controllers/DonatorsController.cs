@@ -17,7 +17,6 @@ namespace MoreLife.API.Controllers;
 public class DonatorsController : ControllerBase
 {
     private readonly IMediator _mediator;
-
     public DonatorsController(IMediator mediator)
     {
         _mediator = mediator;

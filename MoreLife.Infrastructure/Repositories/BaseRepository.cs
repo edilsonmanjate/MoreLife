@@ -30,8 +30,7 @@ public class BaseRepository<T> : IBaseRepository<T> where T : BaseEntity
 
     public async Task<bool> Delete(T entity)
     {
-        entity.Update();
-        _context.Update(entity);
+        _context.Remove(entity);
         await _context.SaveChangesAsync();
         return true;
     }

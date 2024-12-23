@@ -26,10 +26,9 @@ public class DeleteDonatorCommandHandler : IRequestHandler<DeleteDonatorCommand,
     {
         var response = new BaseResponse<bool>();
 
-
-
         try
         {
+
             var donator = _mapper.Map<Donator>(command);
             response.Data = await _donatorRepository.Delete(donator);
             await _unitOfWork.Save(cancellationToken);
