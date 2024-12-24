@@ -91,7 +91,10 @@ builder.Services.AddControllers()
       .AddJsonOptions(options =>
       {
           options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
-      }); ;
+          options.JsonSerializerOptions.MaxDepth = 64;
+
+      });
+ 
 
 builder.Services
     .AddApplication()
