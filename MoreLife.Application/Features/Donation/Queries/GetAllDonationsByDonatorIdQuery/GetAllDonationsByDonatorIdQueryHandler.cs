@@ -26,15 +26,18 @@ public class GetAllDonationsByDonatorIdQueryHandler : IRequestHandler<GetAllDona
 
         try
         {
-            var donation = await _donationRepository.Get(request.DonatorId, cancellationToken);
+            var donation = await _donationRepository.GetByDonatorId(request.DonatorId, cancellationToken);
 
             if (donation is not null)
             {
-                response.Data = _mapper.Map<DonationDto>(donation);
+                var donationDto = _mapper.Map<DonationDto>(donation);
+
+                
+
+                response.Data = donationDto;
                 response.Success = true;
                 response.Message = "Query succeed!";
             }
-
         }
         catch (BadRequestException ex)
         {

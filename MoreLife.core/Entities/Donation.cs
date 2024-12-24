@@ -1,5 +1,4 @@
 ﻿using MoreLife.core.Enums;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace MoreLife.core.Entities;
 
@@ -16,6 +15,7 @@ public class Donation : BaseEntity
     public Donator Donator { get; private set; }
     public DateOnly Date { get; private set; }
     public int Quantity { get; private set; }
+
 
     public void UpdateDonation(DateOnly date, int quantity, Guid donatorId)
     {

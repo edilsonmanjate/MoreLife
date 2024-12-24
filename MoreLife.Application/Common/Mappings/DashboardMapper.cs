@@ -5,10 +5,10 @@ using MoreLife.core.Entities;
 
 namespace MoreLife.Application.Common.Mappings;
 
-public class BloodStockMapper : Profile
+public class DashboardMapper : Profile
 {
-    public BloodStockMapper()
+    public DashboardMapper()
     {
-        CreateMap<BloodStock, BloodStockDto>();
+        CreateMap<Dashboard, DashboardDto>();
     }
 }

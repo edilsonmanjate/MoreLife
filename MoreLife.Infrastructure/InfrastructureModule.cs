@@ -58,6 +58,7 @@ public static class InfrastructureModule
         services.AddScoped<IDonationRepository, DonationRepository>();
         services.AddScoped<IBloodStockRepository, BloodStockRepository>();
         services.AddScoped<IUserRepository, UserRepository>();
+        services.AddScoped<IDashboardRepository, DashboardRepository>();
 
 
         return services;
